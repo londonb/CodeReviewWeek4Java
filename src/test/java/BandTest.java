@@ -26,4 +26,12 @@ public class BandTest {
     myBand.save();
     assertTrue(Band.all().get(0).equals(myBand));
   }
+
+  @Test
+  public void find_findsBandnDatabase_true() {
+    Band myBand = new Band("Go Go Boogie");
+    myBand.save();
+    Band savedBand = Band.find(myBand.getId());
+    assertTrue(myBand.equals(savedBand));
+  }
 }
