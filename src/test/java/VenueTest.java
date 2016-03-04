@@ -19,4 +19,11 @@ public class VenueTest {
     Venue secondVenue = new Venue("40 Watt");
     assertTrue(firstVenue.equals(secondVenue));
   }
+
+  @Test
+  public void save_savesVenueIntoDatabase_true() {
+    Venue myVenue = new Venue("40 Watt");
+    myVenue.save();
+    assertTrue(Venue.all().get(0).equals(myVenue));
+  }
 }
