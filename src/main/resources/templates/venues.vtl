@@ -1,17 +1,6 @@
 venues.vtl
-<h1>Venue List</h1>
 
-<p>Add a new venue:</p>
-
-<form action="/venues" method="post">
-  <label for="venueName">Description</label>
-  <input id="venueName" name="venueName" type="text" required>
-
-  <button class="venueSubmit" type="submit">Add venue</button>
-</form>
-
+<h2>All Venues</h2>
 #foreach ($venue in $venues)
-  <li><a href="/venues/$venue.getId()">$venue.getVenueName()</a></li>
+<h3><a href="/venues/$venue.getId()">$venue.getVenueName()</a></h3>
 #end
-
-<p><a href='/'>Home</a></p>

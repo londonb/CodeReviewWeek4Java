@@ -52,12 +52,12 @@ public class BandTest {
   }
 
   @Test
-  public void getBands_returnsVenueWithId() {
+  public void getVenues_returnsVenueWithId() {
     Band newBand = new Band("Go Go Boogie");
-    Venue newVenue = new Venue("40 Watt");
     newBand.save();
+    Venue newVenue = new Venue("40 Watt");
     newVenue.save();
     newBand.addVenue(newVenue.getId());
-    assertTrue(newVenue.getBands().contains(newBand));
+    assertEquals(newBand.getVenues().size(),1);
   }
 }
