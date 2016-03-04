@@ -1,0 +1,28 @@
+band.vtl
+<h1>$band.getBandName()</h1>
+
+#if($band.getVenues())
+  <p>Here are the venues where this band has played:</p>
+  <ul>
+    #foreach($venue in $band.getVenues())
+      <li>$venue.getVenueName()</li>
+    #end
+  </ul>
+#end
+
+<h4>Add a venue to this band:</h4>
+
+<form action='/add_bands' method='post'>
+    <input id="band_id" name="band_id" type="hidden" value="$band.getId()">
+    <label for="venue_id">Select a venue</label>
+    <select id='venue_id' name='venue_id' type='text'>
+      #foreach($venue in $allVenues)
+        <option value="$venue.getId()"> $venue.getVenueName() </option>
+      #end
+    </select>
+    <button type='submit'>Add venue</button>
+</form>
+
+<p><a href="/bands/$band.getId()/edit">Edit this band</a></p>
+
+<p><a href='/'>Home</a></p>
