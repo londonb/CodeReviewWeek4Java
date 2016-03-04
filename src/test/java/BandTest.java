@@ -28,7 +28,7 @@ public class BandTest {
   }
 
   @Test
-  public void find_findsBandnDatabase_true() {
+  public void find_findsBandInDatabase_true() {
     Band myBand = new Band("Go Go Boogie");
     myBand.save();
     Band savedBand = Band.find(myBand.getId());
