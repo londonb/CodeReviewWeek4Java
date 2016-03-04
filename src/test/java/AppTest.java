@@ -23,24 +23,11 @@ public class AppTest extends FluentTest {
         assertThat(pageSource()).contains("Welcome to the Concert Database");
     }
 
-    // @Test
-    // public void fillFormTest() {
-    //     goTo("http://localhost:4567/change");
-    //     fill("#changeInput").with("33");
-    //     submit("#submit");
-    //     assertThat(pageSource()).contains("Your change for");
-    // }
-
-  // @Test
-  // public void deleteRemovesRestaurantFromHomePage() {
-  //   Cuisine newCuisine = new Cuisine("American");
-  //   newCuisine.save();
-  //   Restaurant newResty = new Restaurant("Jimmy John's", newCuisine.getId());
-  //   newResty.save();
-  //   goTo("http://localhost:4567/");
-  //   assertThat(pageSource()).contains("Jimmy John's");
-  //   newResty.delete();
-  //   goTo("http://localhost:4567/");
-  //   assertThat(pageSource()).doesNotContain("Jimmy John's");
-  // }
+    @Test
+    public void bandIsCreated() {
+      goTo("http://localhost:4567/bands");
+      fill("#bandName").with("Go Go Boogie");
+      submit("bandName");
+      assertThat(pageSource()).contains("Go Go Boogie");
+    }
 }
