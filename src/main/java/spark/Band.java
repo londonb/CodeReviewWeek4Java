@@ -25,7 +25,7 @@ public class Band {
   }
  }
 
-   @Override
+  @Override
   public boolean equals(Object otherBand){
    if (!(otherBand instanceof Band)) {
      return false;

@@ -12,4 +12,11 @@ public class VenueTest {
   public void all_emptyAtFirst() {
     assertEquals(Venue.all().size(), 0);
   }
+
+  @Test
+  public void equals_returnsTrueIfVenueAretheSame() {
+    Venue firstVenue = new Venue("40 Watt");
+    Venue secondVenue = new Venue("40 Watt");
+    assertTrue(firstVenue.equals(secondVenue));
+  }
 }

@@ -25,4 +25,14 @@ public class Venue {
     return con.createQuery(sql).executeAndFetch(Venue.class);
   }
  }
+
+  @Override
+  public boolean equals(Object otherVenue){
+   if (!(otherVenue instanceof Venue)) {
+     return false;
+   } else {
+     Venue newVenue = (Venue) otherVenue;
+     return this.getVenueName().equals(newVenue.getVenueName());
+   }
+  }
 }
