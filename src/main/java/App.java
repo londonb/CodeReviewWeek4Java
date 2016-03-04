@@ -16,9 +16,9 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/add_bands", (request, response) -> {
+    post("/add_band", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      String inputtedName = request.queryParams("name");
+      String inputtedName = request.queryParams("band_name");
       Band newBand = new Band(inputtedName);
       newBand.save();
       model.put("newBand", newBand);
@@ -26,9 +26,9 @@ public class App {
       return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
-    post("/add-venue", (request, response) -> {
+    post("/add_venue", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      String inputtedLocation = request.queryParams("location");
+      String inputtedLocation = request.queryParams("venue_name");
       Venue newVenue = new Venue(inputtedLocation);
       newVenue.save();
       model.put("newVenue", newVenue);
@@ -77,12 +77,12 @@ public class App {
       return null;
       });
 
-      post("/bands/:id", (request, response) -> {
-        HashMap<String, Object> model = new HashMap<String, Object>();
-        Band band = Band.find(Integer.parseInt(request.params("id")));
-        band.delete();
-        response.redirect("/bands");
-        return null;
-      });
+    post("/bands/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Band band = Band.find(Integer.parseInt(request.params("id")));
+      band.delete();
+      response.redirect("/bands");
+      return null;
+    });
   }
 }

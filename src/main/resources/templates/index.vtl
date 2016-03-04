@@ -4,10 +4,10 @@ index.vtl
 
 
 <h3>Add A Band to the Database</h3>
-    <form action="/add-band" method="post">
+    <form action="/add_band" method="post">
       <div class="form-group">
-        <label for="name">Band Name</label>
-        <input class="form-control" type="text" id="name" name="name" placeholder="Please enter a band name" required>
+        <label for="band_name">Band Name</label>
+        <input class="form-control" type="text" id="band_name" name="band_name" placeholder="Please enter a band name" required>
       </div>
       <button type="submit" class="btn btn-default" id="addBand">Add Band</button>
     </form>
@@ -15,18 +15,18 @@ index.vtl
 
 
     #if ($newBand)
-    <h4>$newBand.getName() has been added to the band list</h4>
+    <h4>$newBand.getBandName() has been added to the band list</h4>
     #end
 
 
     <h3>Add A Venue</h3>
-    <form action="/add-venue" method="post">
+    <form action="/add_venue" method="post">
       <div class="form-group">
-        <label for="location">Venue Name</label>
-        <input type="text" id="location" name="location" placeholder="Please enter  a venue name" required>
+        <label for="venue_name">Venue Name</label>
+        <input type="text" id="venue_name" name="venue_name" placeholder="Please enter a venue name" required>
       </div>
-      <button type="submit" class="btn btn-default" id="addVenue">Add Band</button>
+      <button type="submit" class="btn btn-default" id="addVenue">Add Venue</button>
     </form>
     #if ($newVenue)
-    <h4>$newVenue.getLocation() has been added to the venue list</h4>
+    <h4>$newVenue.getVenueName() has been added to the venue list</h4>
     #end
