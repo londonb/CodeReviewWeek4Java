@@ -52,7 +52,7 @@ public class BandTest {
   }
 
   @Test
-  public void getBands_returnesVenueWithId() {
+  public void getBands_returnsVenueWithId() {
     Band newBand = new Band("Go Go Boogie");
     Venue newVenue = new Venue("40 Watt");
     newBand.save();

@@ -64,4 +64,14 @@ public class Venue {
       .executeAndFetch(Band.class);
     }
   }
+
+  public void addBand(int bandId) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO shows (band_id, venue_id) VALUES (:bandId, :venueId)";
+        con.createQuery(sql)
+          .addParameter("bandId", bandId)
+          .addParameter("venueId", id)
+          .executeUpdate();
+    }
+  }
 }
