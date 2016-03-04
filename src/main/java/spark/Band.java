@@ -57,10 +57,19 @@ public class Band {
   public void update(String newName) {
     this.band_name = newName;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE bands SET band_name=:newName;";
+      String sql = "UPDATE bands SET band_name=:newName";
         con.createQuery(sql)
           .addParameter("newName", newName)
           .executeUpdate();
+    }
+  }
+
+  public void delete() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM bands WHERE id =:id";
+      con.createQuery(sql)
+      .addParameter("id",id)
+      .executeUpdate();
     }
   }
 }

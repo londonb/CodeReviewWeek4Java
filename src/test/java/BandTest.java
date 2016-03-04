@@ -37,9 +37,17 @@ public class BandTest {
 
   @Test
   public void update_updatesBandNameInDatabase() {
-    Band newBand = new Band ("Bradd");
+    Band newBand = new Band ("Goo Goo Boogie");
     newBand.save();
-    newBand.update("Brad");
-    assertEquals(newBand.getBandName(), "Brad");
+    newBand.update("Go Go Boogie");
+    assertEquals(newBand.getBandName(), "Go Go Boogie");
+  }
+
+  @Test
+  public void delete_deletesABandFromDatabase() {
+    Band myBand = new Band ("Go Go Boogie");
+    myBand.save();
+    myBand.delete();
+    assertEquals(Band.all().size(), 0);
   }
 }
