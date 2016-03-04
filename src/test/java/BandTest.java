@@ -50,4 +50,14 @@ public class BandTest {
     myBand.delete();
     assertEquals(Band.all().size(), 0);
   }
+
+  @Test
+  public void getBands_returnesVenueWithId() {
+    Band newBand = new Band("Go Go Boogie");
+    Venue newVenue = new Venue("40 Watt");
+    newBand.save();
+    newVenue.save();
+    newBand.addVenue(newVenue.getId());
+    assertTrue(newVenue.getBands().contains(newBand));
+  }
 }
