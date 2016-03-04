@@ -30,4 +30,12 @@ public class AppTest extends FluentTest {
       submit("#addBand");
       assertThat(pageSource()).contains("Go Go Boogie");
     }
+
+    @Test
+    public void venueIsCreated() {
+      goTo("http://localhost:4567/");
+      fill("#venue_name").with("40 Watt");
+      submit("#addVenue");
+      assertThat(pageSource()).contains("40 Watt");
+    }
 }
