@@ -65,7 +65,7 @@ public class Band {
     }
   }
   public void delete() {
-    String sqlJoin ="DELETE FROM bands_venues WHERE band_id = :id";
+    String sqlJoin ="DELETE FROM shows WHERE band_id = :id";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sqlJoin)
         .addParameter("id", id)
@@ -103,7 +103,7 @@ public class Band {
     }
   }
   public static void deleteAll() {
-    String sqlJoin ="DELETE FROM bands_venues";
+    String sqlJoin ="DELETE FROM shows";
     try(Connection con = DB.sql2o.open()) {
       con.createQuery(sqlJoin)
         .executeUpdate();

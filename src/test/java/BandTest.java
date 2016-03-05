@@ -36,11 +36,11 @@ public class BandTest {
   }
 
   @Test
-  public void update_updatesBandNameInDatabase() {
+  public void updateName_updatesBandNameInDatabase() {
     Band newBand = new Band ("Goo Goo Boogie");
     newBand.save();
-    newBand.update("Go Go Boogie");
-    assertEquals(newBand.getBandName(), "Go Go Boogie");
+    newBand.updateName("Go Go Boogie");
+    assertEquals(Band.all().get(0).getName(),("Go Go Boogie"));
   }
 
   @Test
@@ -57,7 +57,8 @@ public class BandTest {
     newBand.save();
     Venue newVenue = new Venue("40 Watt");
     newVenue.save();
-    newBand.addVenue(newVenue.getId());
-    assertEquals(newBand.getVenues().size(),1);
+    newBand.addVenue(newVenue);
+    List savedVenues = newBand.getVenues();
+    assertEquals(savedVenues.size(), 1);
   }
 }
