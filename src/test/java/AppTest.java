@@ -23,4 +23,31 @@ public class AppTest extends FluentTest {
         assertThat(pageSource()).contains("Welcome to the Concert Database");
     }
 
+    @Test
+    public void bandIsCreated() {
+      goTo("http://localhost:4567/bands");
+      fill("#band_name").with("Go Go Boogie");
+      submit("#addBand");
+      assertThat(pageSource()).contains("Go Go Boogie");
+    }
+
+    @Test
+    public void venueIsCreated() {
+      goTo("http://localhost:4567/venues");
+      fill("#venueName").with("40 Watt");
+      submit("#addVenue");
+      assertThat(pageSource()).contains("40 Watt");
+    }
+
+    @Test
+    public void addVenueToBand() {
+      Venue newVenue = new Venue("Fox Teater");
+      newVenue.save();
+      Band newBand = new Band("Go Go Boogie");
+      newBand.save();
+      String bandPath = String.format("http://localhost:4567/bands/%d", newBand.getId());
+      goTo(bandPath);
+      assertThat(pageSource()).contains("Fox Teater");
+      assertThat(pageSource()).contains("Go Go Boogie");
+    }
 }
