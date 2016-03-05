@@ -1,6 +1,36 @@
 venue.vtl
-$venue.getVenueName()
 
-<h2>Bands That Have Played This Venue</h2>
-#foreach ($band in $venue.getBands())
-<h3>$band.getBandName())</h3>
+<h2>$venue.getName()</h2>
+#if ($venue.getBands())
+  <p>Here are the bands that have played at this venue:</p>
+  #foreach ($band in $venue.getBands())
+    <li><a href="/bands/$band.getId()">$band.getName()</a></li>
+  #end
+#end
+
+<form action="/venues/$venue.getId()" method="post">
+
+  <input id="venue_id" name="venue_id" type="hidden" value="$venue.getId()">
+
+
+  <label for="band_id">Assign Band</label>
+  <select id="band_id" name="band_id" type="text">
+    #foreach($band in $allBands)
+    <option value="$band.getId()">$band.getName()</option>
+    #end
+  </select>
+  <button id="assignBandBtn" type="submit">Assign Band</button>
+</form>
+
+<hr>
+
+<form action="/venues/$venue.getId()/update" method="post">
+  <label for="updateVenueName">Venue Name</label>
+  <input id="updateVenueName" name="updateVenueName" type="text" required autofocus="autofocus" value="$venue.getName()">
+
+  <button type="submit" id="updateVenue">Update Venue</button>
+</form>
+
+  <a href="/bands">Return to Band List</a>
+  <p></p>
+  <a href="/tags">Return to Venue List</a>

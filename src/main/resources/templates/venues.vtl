@@ -1,6 +1,35 @@
 venues.vtl
 
+
+
 <h2>All Venues</h2>
+
+<ul>
 #foreach ($venue in $venues)
-<h3><a href="/venues/$venue.getId()">$venue.getVenueName()</a></h3>
+  <li><a href="/venues/$venue.getId()">$venue.getName()</a></li>
+  <form action="/venues/$venue.getId()/delete" class="form-inline" method="post">
+    <input id="venueId" name="venueId" class="form-control" type="hidden" value="$venue.getId()">
+    <button id="$venue.getId()" class="form-control" type ="submit">Delete Venue</button>
+  </form>
 #end
+</ul>
+
+<form action="/venues" method="post">
+  <label for="venueName">Venue Name</label>
+  <input id="venueName" name="venueName" type="text" required autofocus="autofocus">
+
+  <button id="addVenueBtn" type="submit">Add Venue</button>
+</form>
+
+<hr>
+
+<a href="/bands">Return to Band List</a>
+<p></p>
+<a href="/venues">Return to Venue List</a>
+
+<p></p>
+<p></p>
+
+<form action="/venues/deleteAll" method="post">
+    <button id="deleteAllVenuesBtn" type="submit" class="btn btn-warning">Delete All Venues</button>
+</form>

@@ -1,28 +1,37 @@
 band.vtl
-<h1>$band.getBandName()</h1>
-
-#if($band.getVenues())
-  <p>Here are the venues where this band has played:</p>
-  <ul>
-    #foreach($venue in $band.getVenues())
-      <li>$venue.getVenueName()</li>
-    #end
-  </ul>
+<h2>$band.getName()</h2>
+#if ($band.getVenues())
+  <p>Here are the venues this band has played at:</p>
+  #foreach ($venue in $band.getVenues())
+    <li><a href="/venues/$venue.getId()">$venue.getName()</a></li>
+  #end
 #end
 
-<h4>Add a venue to this band:</h4>
+<form action="/bands/$band.getId()" method="post">
 
-<form action='/add_bands' method='post'>
-    <input id="band_id" name="band_id" type="hidden" value="$band.getId()">
-    <label for="venue_id">Select a venue</label>
-    <select id='venue_id' name='venue_id' type='text'>
-      #foreach($venue in $allVenues)
-        <option value="$venue.getId()"> $venue.getVenueName() </option>
-      #end
-    </select>
-    <button type='submit'>Add venue</button>
+  <input id="band_id" name="band_id" type="hidden" value="$band.getId()">
+
+
+  <label for="venueName">Assign Venue</label>
+  <select id="venueName" name="venueName" type="text">
+    #foreach($venue in $allVenues)
+    <option value="$venue.getId()">$venue.getName()</option>
+    #end
+  </select>
+  <button id="assignVenueBtn" type="submit">Assign Venue</button>
 </form>
 
-<p><a href="/bands/$band.getId()/edit">Edit this band</a></p>
+<hr>
 
-<p><a href='/'>Home</a></p>
+<form action="/bands/$band.getId()/update" method="post">
+  <label for="updateBandName">Band Name</label>
+  <input id="updateBandName" name="updateBandName" type="text" required autofocus="autofocus" value="$band.getName()">
+
+  <button type="submit" id="updateBand">Update Band</button>
+</form>
+
+<hr>
+
+  <a href="/bands">Return to Band List</a>
+  <p></p>
+  <a href="/venues">Return to Venue List</a>

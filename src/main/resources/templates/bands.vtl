@@ -1,6 +1,28 @@
 bands.vtl
 
-<h2>All Bands</h2>
+<ul>
 #foreach ($band in $bands)
-<h3><a href="/bands/$band.getId()">$band.getBandName()</a></h3>
+  <li><a href="/bands/$band.getId()">$band.getName()</a></li>
+  <form action="/bands/$band.getId()/delete" method="post">
+    <input id="bandId" name="bandId" type="hidden" value="$band.getId()">
+    <button id="$band.getId()" type ="submit">Delete Band</button>
+  </form>
 #end
+</ul>
+
+<form action="/bands" method="post">
+  <label for="band_name">Band Name</label>
+  <input id="band_name" name="band_name" type="text" required autofocus="autofocus">
+  <button type="submit" id="addBand">Add Band</button>
+</form>
+
+<hr>
+
+<a href="/bands">Return to Band List</a>
+<p></p>
+<a href="/venues">Return to Venue List</a>
+
+
+<form action="/bands/deleteAll" method="post">
+    <button id="deleteAllBandsBtn" type="submit" class="btn btn-warning">Delete All Bands</button>
+</form>
